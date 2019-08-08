@@ -30,6 +30,7 @@ find_package( catkin REQUIRED COMPONENTS
         sensor_msgs
         pcl_ros
         provider_sonar
+        cv_bridge
         message_generation)
 
 
@@ -44,6 +45,7 @@ catkin_package(
         sensor_msgs
         pcl_ros
         provider_sonar
+        cv_bridge
         message_runtime)
 
 #===============================================================================

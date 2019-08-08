@@ -27,12 +27,25 @@
 #define PROC_SONAR_PROC_SONAR_NODE_H
 
 #include <ros/ros.h>
+#include <opencv/cv.h>
+#include <cv_bridge/cv_bridge.h>
+#include <sensor_msgs/PointCloud2.h>
+#include <sensor_msgs/Image.h>
+#include <sensor_msgs/image_encodings.h>
+#include <pcl_ros/io/pcd_io.h>
 
 namespace proc_sonar {
     class ProcSonarNode {
     public:
         ProcSonarNode(ros::NodeHandlePtr &nh);
         void Spin();
+
+    private:
+
+        ros::Subscriber sonarPointCloudSubscriber;
+        ros::Publisher imgPublisher;
+
+        void ProviderSonarPointCloudCallback(const pcl::PointCloud<pcl::PointXYZI>::Ptr &point_cloud);
 
     };
 }
