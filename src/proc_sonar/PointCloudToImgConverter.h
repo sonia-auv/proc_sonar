@@ -1,5 +1,5 @@
 /**
- * \file	proc_sonar_node.h
+ * \file	PointCloudToImgConverter.h
  * \author	Marc-Antoine Couture <coumarc9@outlook.com>
  * \date	2019-07-14
  *
@@ -23,33 +23,26 @@
  * along with S.O.N.I.A. software. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef PROC_SONAR_PROC_SONAR_NODE_H
-#define PROC_SONAR_PROC_SONAR_NODE_H
+#ifndef PROC_SONAR_POINTCLOUDTOIMGCONVERTER_H
+#define PROC_SONAR_POINTCLOUDTOIMGCONVERTER_H
 
-#include <ros/ros.h>
 #include <opencv/cv.h>
-#include <cv_bridge/cv_bridge.h>
-#include <sensor_msgs/PointCloud2.h>
-#include <sensor_msgs/Image.h>
-#include <sensor_msgs/image_encodings.h>
 #include <pcl_ros/io/pcd_io.h>
-#include "PointCloudToImgConverter.h"
 
 namespace proc_sonar {
-    class ProcSonarNode {
+    class PointCloudToImgConverter {
     public:
-        ProcSonarNode(ros::NodeHandlePtr &nh);
-        void Spin();
+        PointCloudToImgConverter(int mat_width, int mat_height);
+
+        cv::Mat Convert(const pcl::PointCloud<pcl::PointXYZI>::Ptr &point_cloud);
 
     private:
 
-        ros::Subscriber sonarPointCloudSubscriber;
-        ros::Publisher imgPublisher;
-        PointCloudToImgConverter imgConverter;
-
-        void ProviderSonarPointCloudCallback(const pcl::PointCloud<pcl::PointXYZI>::Ptr &point_cloud);
+        int mat_width;
+        int mat_height;
 
     };
 }
 
-#endif //PROC_SONAR_PROC_SONAR_NODE_H
+
+#endif //PROC_SONAR_POINTCLOUDTOIMGCONVERTER_H

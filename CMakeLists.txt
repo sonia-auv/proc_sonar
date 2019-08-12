@@ -67,7 +67,7 @@ include_directories(
 set( TARGET_NAME proc_sonar_node )
 add_executable( ${TARGET_NAME}
         ${proc_sonar_SRC_DIR}/main.cc
-        ${proc_sonar_SRC_DIR}/proc_sonar_node.cc)
+        ${proc_sonar_SRC_DIR}/proc_sonar_node.cc ${proc_sonar_SRC_DIR}/PointCloudToImgConverter.cc)
 target_link_libraries( ${TARGET_NAME} ${catkin_LIBRARIES})
 set_target_properties( ${TARGET_NAME} PROPERTIES LINKER_LANGUAGE CXX )
 add_dependencies(${PROJECT_NAME}_node ${PROJECT_NAME}_generate_messages_cpp ${PROJECT_NAME}_gencfg)
