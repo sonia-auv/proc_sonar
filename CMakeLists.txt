@@ -29,11 +29,7 @@ find_package( catkin REQUIRED COMPONENTS
         std_msgs
         sensor_msgs
         pcl_ros
-        provider_sonar
-        cv_bridge
-        message_generation)
-
-
+        cv_bridge)
 
 # Declare this project as a catkin package and export the necessary build flags
 catkin_package(
@@ -44,9 +40,7 @@ catkin_package(
         std_msgs
         sensor_msgs
         pcl_ros
-        provider_sonar
-        cv_bridge
-        message_runtime)
+        cv_bridge)
 
 #===============================================================================
 # I N C L U D E   F I L E S
@@ -70,4 +64,4 @@ add_executable( ${TARGET_NAME}
         ${proc_sonar_SRC_DIR}/proc_sonar_node.cc ${proc_sonar_SRC_DIR}/PointCloudToImgConverter.cc)
 target_link_libraries( ${TARGET_NAME} ${catkin_LIBRARIES})
 set_target_properties( ${TARGET_NAME} PROPERTIES LINKER_LANGUAGE CXX )
-add_dependencies(${PROJECT_NAME}_node ${PROJECT_NAME}_generate_messages_cpp ${PROJECT_NAME}_gencfg)
+add_dependencies(${PROJECT_NAME}_node ${catkin_EXPORTED_TARGETS})
