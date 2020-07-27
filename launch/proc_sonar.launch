@@ -1,0 +1,3 @@
+<launch>
+	<node name="proc_sonar" pkg="proc_sonar" type="proc_sonar_node" output="screen"/>
+</launch>
